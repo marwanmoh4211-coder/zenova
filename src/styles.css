@@ -1,0 +1,211 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-neon: var(--neon);
+  --color-sunset: var(--sunset);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --font-display: "Cairo", "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Cairo", "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+:root {
+  --radius: 0.75rem;
+  --background: oklch(0.15 0.02 265);
+  --foreground: oklch(0.97 0.005 260);
+  --card: oklch(0.19 0.025 265);
+  --card-foreground: oklch(0.97 0.005 260);
+  --popover: oklch(0.19 0.025 265);
+  --popover-foreground: oklch(0.97 0.005 260);
+  --primary: oklch(0.68 0.24 300);
+  --primary-foreground: oklch(0.98 0.005 260);
+  --secondary: oklch(0.26 0.03 265);
+  --secondary-foreground: oklch(0.97 0.005 260);
+  --muted: oklch(0.24 0.02 265);
+  --muted-foreground: oklch(0.72 0.02 260);
+  --accent: oklch(0.78 0.17 200);
+  --accent-foreground: oklch(0.15 0.02 265);
+  --neon: oklch(0.85 0.18 180);
+  --sunset: oklch(0.72 0.2 45);
+  --destructive: oklch(0.65 0.24 25);
+  --destructive-foreground: oklch(0.98 0.005 260);
+  --border: oklch(1 0 0 / 8%);
+  --input: oklch(1 0 0 / 10%);
+  --ring: oklch(0.68 0.24 300);
+  --chart-1: oklch(0.68 0.24 300);
+  --chart-2: oklch(0.78 0.17 200);
+  --chart-3: oklch(0.72 0.2 45);
+  --chart-4: oklch(0.75 0.18 140);
+  --chart-5: oklch(0.7 0.2 350);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    /* RTL عالمي للموقع كله */
+    direction: rtl;
+    /* تحسين عرض الخط العربي */
+    text-rendering: optimizeLegibility;
+  }
+
+  html, body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    /* تحسين التمرير على الجوال */
+    -webkit-overflow-scrolling: touch;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: 0;
+    /* تحسين وزن الخط للعناوين العربية */
+    font-weight: 700;
+    line-height: 1.4;
+  }
+
+  p, span, a, button, input {
+    /* ارتفاع السطر المناسب للعربية */
+    line-height: 1.8;
+  }
+
+  /* تحسين حقول الإدخال للعربية */
+  input, textarea {
+    text-align: right;
+  }
+
+  /* إزالة outline افتراضي واستبداله بتصميم مخصص */
+  *:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+
+  /* تحسين الـ scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--color-background);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: oklch(1 0 0 / 15%);
+    border-radius: 999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: oklch(1 0 0 / 25%);
+  }
+
+  /* تحسين التحديد النصي */
+  ::selection {
+    background: color-mix(in oklab, var(--primary) 35%, transparent);
+    color: var(--foreground);
+  }
+}
+
+@utility bg-app-gradient {
+  background-image:
+    radial-gradient(ellipse 80% 60% at 20% 0%, color-mix(in oklab, var(--primary) 22%, transparent), transparent 60%),
+    radial-gradient(ellipse 60% 50% at 90% 10%, color-mix(in oklab, var(--accent) 18%, transparent), transparent 60%),
+    linear-gradient(to bottom, oklch(0.17 0.03 270), oklch(0.12 0.02 265));
+}
+
+@utility text-glow {
+  background: linear-gradient(120deg, var(--primary), var(--accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  padding-bottom: 0.1em;
+}
+
+@utility card-glow {
+  box-shadow:
+    0 0 0 1px color-mix(in oklab, var(--primary) 20%, transparent),
+    0 20px 50px -20px color-mix(in oklab, var(--primary) 45%, transparent);
+}
+
+@utility btn-glow {
+  box-shadow: 0 10px 30px -10px color-mix(in oklab, var(--primary) 60%, transparent);
+}
+
+/* تأثير shimmer للتحميل */
+@utility shimmer {
+  background: linear-gradient(
+    90deg,
+    oklch(1 0 0 / 0%) 0%,
+    oklch(1 0 0 / 5%) 50%,
+    oklch(1 0 0 / 0%) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}/* ────────────────────────────
+   Utilities إضافية
+   ──────────────────────────── */
+
+@utility scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@utility tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ────────────────────────────
+   RTL Fixes للمخططات
+   ──────────────────────────── */
+
+.recharts-wrapper {
+  direction: ltr;
+}
+
+.recharts-tooltip-wrapper {
+  direction: rtl;
+}
